@@ -6,13 +6,43 @@
 }
 
 .tile {
+  width: 200px;          /* MUST be fixed */
+  height: 200px;         /* MUST be fixed */
+  perspective: 1000px;
+}
+
+.tile-inner {
   position: relative;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.tile.flipped .tile-inner {
+  transform: rotateY(180deg);
+}
+
+.tile-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === FRONT FACE === */
+
+.tile-front {
+  position: relative;
 }
 
 .tile-base {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .tile-icon {
@@ -24,19 +54,12 @@
   transform: translate(-50%, -50%);
 }
 
-.tile-reveal,
-.tile-claimed {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* === BACK FACE === */
+
+.tile-back {
+  transform: rotateY(180deg);
+  background: white;
+  padding: 12px;
   text-align: center;
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.claimed {
-  opacity: 0.4;
-  pointer-events: none;
 }

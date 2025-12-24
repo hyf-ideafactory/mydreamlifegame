@@ -11,7 +11,12 @@ const ICONS = [
   ...Array(7).fill(sparkleIcon),
 ];
 
-export default function GameBoard({ currentReward, onNotifyReward }) {
+export default function GameBoard({ 
+  currentReward, 
+  activeTileIndex, 
+  onNotifyReward 
+}) {
+  console.log("gameboard activeTileIndex:", activeTileIndex);
   return (
     <div>
       <div className="tile-grid">
@@ -20,19 +25,12 @@ export default function GameBoard({ currentReward, onNotifyReward }) {
             key={index}
             baseSrc={tileBase}
             iconSrc={icon}
+            isActive={index === activeTileIndex}
+            reward={currentReward}
+            onNotofy={onNotifyReward}
           />
         ))}
       </div>
-
-      {currentReward && (
-        <div className="reward-reveal">
-          <h2>You unlocked:</h2>
-          <p>{currentReward}</p>
-          <button onClick={onNotifyReward}>
-            Redeem Reward (click here to send email notification to Jelicia)
-          </button>
-        </div>
-      )}
     </div>
   );
 }
