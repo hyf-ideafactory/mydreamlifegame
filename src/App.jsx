@@ -44,9 +44,30 @@ function App() {
   }
 
   function handleNotifyReward() {
-    setCurrentReward(null);
-    setActiveTileIndex(null);
-  }
+    const goalText =
+    completedGoals[completedGoals.length - 1]?.text || "";
+
+  const subject = encodeURIComponent(
+    "🎁 Reward unlocked — The #GOALS Life Project"
+  );
+
+  const body = encodeURIComponent(
+    `Hi,\n\n` +
+    `I’ve completed a goal on my THE #GOALS Life Project profile.\n\n` +
+    `Completed goal:\n"${goalText}"\n\n` +
+    `Unlocked reward:\n${currentReward}\n\n` +
+    `Let's make it happen.`
+  );
+
+  const email = "jelicia@hyflabs.com";
+
+  const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+  window.open(mailtoUrl, "_blank");
+
+  // Reset UI after opening email
+  setCurrentReward(null);
+  setActiveTileIndex(null);
+}
 
   function exportCompletedGoals() {
   if (completedGoals.length === 0) return;
