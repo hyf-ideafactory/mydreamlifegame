@@ -1,20 +1,338 @@
-.tile-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 16px;
+/* =====================================================
+   DESIGN TOKENS — Gold & Teal Luxury
+   ===================================================== */
+
+:root {
+  --teal-dark: #005f73;
+  --teal-soft: #0a9396;
+
+  --gold-main: #ee9b00;
+  --gold-soft: #ffd166;
+
+  --ink-primary: #0f172a;
+  --ink-secondary: #475569;
+
+  --surface-main: #ffffff;
+  --surface-soft: #f8fafc;
+}
+
+/* =====================================================
+   GLOBAL RESET & BASE
+   ===================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: "Chewy", serif;
+  font-size: 200px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 30px;
+  color: var(--ink-primary);
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family:"Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #eef2f7 100%
+  );
+
+  color: var(--ink-primary);
+}
+
+button {
+  font-family: inherit;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* =====================================================
+   GOAL SIDEBAR — Premium Card
+   ===================================================== */
+
+.goal-list {
+  background: var(--surface-main);
+  border-radius: 16px;
+  padding: 24px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.goal-list h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px 0;
+}
+
+.goal-list p {
+  font-size: 14px;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+  margin: 6px 0;
+}
+
+/* =====================================================
+   GOAL ITEMS
+   ===================================================== */
+
+.goal-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.goal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  transition: background 0.2s ease;
+}
+
+.goal-item:hover {
+  background: #f1f5f9;
+}
+
+.goal-item.selected {
+  background: linear-gradient(
+    90deg,
+    rgba(10, 147, 150, 0.10),
+    rgba(238, 155, 0, 0.10)
+  );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(238, 155, 0, 0.35);
+}
+
+.goal-item input[type="checkbox"] {
+  margin-top: 3px;
+}
+
+.goal-text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.remove-goal {
+  background: none;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.remove-goal:hover {
+  color: var(--ink-primary);
+}
+
+/* =====================================================
+   CONFIRM COMPLETION — Primary CTA
+   ===================================================== */
+
+.goal-confirm {
   margin-top: 24px;
 }
 
+.goal-confirm button {
+  width: 100%;
+  padding: 12px 16px;
+
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 12px;
+
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--teal-soft),
+    var(--teal-dark)
+  );
+
+  box-shadow:
+    0 8px 20px rgba(10, 147, 150, 0.35);
+}
+
+.goal-confirm button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 28px rgba(10, 147, 150, 0.45);
+}
+
+/* =====================================================
+   ADD GOAL — Gold Accent Form
+   ===================================================== */
+
+.goal-add {
+  margin-top: 40px;
+}
+
+.goal-add-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.goal-add-row textarea {
+  flex: 1;
+  height: 44px;
+
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.2;
+
+  resize: none;
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.goal-add-row textarea:focus {
+  border-color: var(--teal-soft);
+  box-shadow:
+    0 0 0 3px rgba(10, 147, 150, 0.15);
+}
+
+.goal-add-row button {
+  height: 44px;
+  padding: 0 18px;
+
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #3b2f00;
+  background: linear-gradient(
+    135deg,
+    var(--gold-main),
+    var(--gold-soft)
+  );
+
+  box-shadow:
+    0 6px 18px rgba(238, 155, 0, 0.35);
+}
+
+.goal-add-row button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.goal-add-row button:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   PROGRESS / MOTIVATION
+   ===================================================== */
+
+.goal-progress {
+  margin-top: 32px;
+  padding-top: 12px;
+
+  border-top: 1px solid #e5e7eb;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.goal-progress strong {
+  color: var(--teal-dark);
+}
+
+/* =====================================================
+   GAME BOARD
+   ===================================================== */
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 210px);
+  gap: 29px;
+  margin-top: 32px;
+  margin-left: 56px;
+}
+
 .tile {
-  width: 200px;          /* MUST be fixed */
-  height: 200px;         /* MUST be fixed */
+  width: 200px;
+  height: 235px;
   perspective: 1000px;
+   box-shadow:
+    0 14px 36px rgba(0, 95, 115, 0.28);
+  opacity: 1;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.tile-enter {
+  transform: translateY(12px);
+  animation: tileEnter 0.6s ease-out forwards;
+}
+
+
+.tile:nth-child(1) { animation-delay: 0.05s; }
+.tile:nth-child(2) { animation-delay: 0.10s; }
+.tile:nth-child(3) { animation-delay: 0.15s; }
+.tile:nth-child(4) { animation-delay: 0.20s; }
+.tile:nth-child(5) { animation-delay: 0.25s; }
+.tile:nth-child(6) { animation-delay: 0.30s; }
+.tile:nth-child(7) { animation-delay: 0.35s; }
+.tile:nth-child(8) { animation-delay: 0.40s; }
+.tile:nth-child(9) { animation-delay: 0.45s; }
+.tile:nth-child(10) { animation-delay: 0.50s; }
+.tile:nth-child(11) { animation-delay: 0.55s; }
+.tile:nth-child(12) { animation-delay: 0.60s; }
+.tile:nth-child(13) { animation-delay: 0.65s; }
+.tile:nth-child(14) { animation-delay: 0.70s; }
+.tile:nth-child(15) { animation-delay: 0.75s; }
+.tile:nth-child(16) { animation-delay: 0.80s; }
+.tile:nth-child(17) { animation-delay: 0.85s; }
+.tile:nth-child(18) { animation-delay: 0.90s; }
+.tile:nth-child(19) { animation-delay: 0.95s; }
+.tile:nth-child(20) { animation-delay: 1.0s; }
+.tile:nth-child(21) { animation-delay: 1.05s; }
+.tile:nth-child(22) { animation-delay: 1.10s; }
+
+@keyframes tileEnter {
+  to {
+    transform: translateY(0);
+  }
 }
 
 .tile-inner {
-  position: relative;
   width: 100%;
   height: 100%;
+
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
 }
@@ -27,14 +345,12 @@
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* === FRONT FACE === */
-
+/* Front */
 .tile-front {
   position: relative;
 }
@@ -42,24 +358,147 @@
 .tile-base {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* NOT cover */
+  display: block;
 }
+
 
 .tile-icon {
   position: absolute;
   top: 50%;
   left: 50%;
+
   width: 96px;
   height: 96px;
+
   transform: translate(-50%, -50%);
 }
 
-/* === BACK FACE === */
-
+/* Back */
 .tile-back {
   transform: rotateY(180deg);
-  background: white;
-  padding: 12px;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff,
+    #f8fafc
+  );
+
+  padding: 16px;
+  font-size: 15px;
   text-align: center;
-  font-size: 14px;
 }
+
+.tile:hover {
+  transform: translateY(-6px) scale(1.02);
+   box-shadow:
+    0 22px 48px rgba(0, 95, 115, 0.38);
+}
+
+@keyframes headerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  animation: headerEnter 0.8s ease-out both;
+}
+
+@keyframes tileCelebrate {
+  0% {
+    box-shadow: 0 0 0 rgba(238, 155, 0, 0);
+  }
+  40% {
+    box-shadow: 0 0 48px rgba(238, 155, 0, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(238, 155, 0, 0);
+  }
+}
+
+.tile.flipped {
+  animation: tileCelebrate 1.2s ease-out;
+}
+
+.tile-reward-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.reward-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink-primary);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.redeem-button {
+  padding: 10px 18px;
+  border-radius: 999px; /* pill = modern luxury */
+  font-size: 14px;
+  font-weight: 500;
+
+  background: linear-gradient(
+    135deg,
+    var(--gold-main),
+    var(--gold-soft)
+  );
+  color: #3b2f00;
+
+  box-shadow:
+    0 6px 18px rgba(238, 155, 0, 0.35);
+}
+
+.redeem-button:hover {
+  transform: translateY(-1px);
+}
+
+.reset-progress {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #94a3b8;
+  text-decoration: underline;
+}
+
+.reset-progress:hover {
+  color: #475569;
+}
+
+.export-button {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+
+  background: linear-gradient(135deg, #0a9396, #005f73);
+  color: #ffffff;
+
+  box-shadow: 0 8px 24px rgba(10, 147, 150, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.export-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(10, 147, 150, 0.45);
+}
+
+.export-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+

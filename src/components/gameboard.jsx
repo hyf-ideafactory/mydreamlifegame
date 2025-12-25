@@ -1,4 +1,4 @@
-import Tile from "./Tile";
+import Tile from "./tile";
 
 import tileBase from "../assets/tile-base.svg";
 import lockIcon from "../assets/icon-lock.svg";
@@ -27,7 +27,8 @@ export default function GameBoard({
             iconSrc={icon}
             isActive={index === activeTileIndex}
             reward={currentReward}
-            onNotofy={onNotifyReward}
+            onNotify={onNotifyReward}
+            className="tile-enter"
           />
         ))}
       </div>

@@ -3,11 +3,12 @@ export default function Tile({
   iconSrc,
   isActive,
   reward,
-  onNotify
+  onNotify, 
+  className
 }) {
   console.log("Tile isActive:", isActive);
   return (
-    <div className={`tile ${isActive ? "flipped" : ""}`}>
+    <div className={`tile ${className || ""} ${isActive ? "flipped" : ""}`}>
       <div className="tile-inner">
         {/* Front */}
         <div className="tile-face tile-front">
@@ -18,15 +19,19 @@ export default function Tile({
         {/* Back */}
         <div className="tile-face tile-back">
           {reward && (
-            <>
-              <p className="reward-text">{reward}</p>
-              <button onClick={onNotify}>
-              Redeem Reward
-              </button>
-            </>
-          )}
+          <div className="tile-reward-content">
+          <p className="reward-text">{reward}</p>
+
+          <button
+            className="redeem-button"
+            onClick={onNotify}
+          >
+            Make it happen →
+          </button>
         </div>
-      </div>
-    </div>
-  );
-}
+      )}
+</div>
+</div>
+</div>
+)};
+
